@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>KellyHlPicker example</title>
+        <meta charset="UTF-8">
+        <script src="../html5kellyhlpicker.js"></script>
+        <style>
+			body {background : #d4d4d4; font-family: Calibri; padding-top: 12px; text-align : center;} input{border: 0px;}
+			.controll a {
+				display: inline-block;
+				text-decoration : none; 
+				color : #555; 
+				padding-bottom : 0px; 
+                margin-right : 12px;
+				font-weight : bold; 
+				font-size : 16px; 
+			}			
+		</style>
+    </head>
+    <body>		
+    
+		<canvas id="picker"></canvas><br>	        
+        
+        <div class="controll">
+            <a class="" href="#" onclick="picker.setOption('style', 'quad', true); return false;">Quad</a>
+            <a href="#" onclick="picker.setOption('style', 'arc', true); return false;">Arc</a><br>
+            <a href="#" onclick="picker.setOption('chunks', picker.getOption('chunks') + 2, true); return false;">Inc chunks</a>
+            <a href="#" onclick="picker.setOption('chunks', picker.getOption('chunks') - 2, true); return false;">Dec chunks</a>
+            <a href="#" onclick="picker.setOption('size', picker.getOption('size') + 40, true); return false;">Inc size</a>
+            <a href="#" onclick="picker.setOption('size', picker.getOption('size') - 40, true); return false;">Dec size</a>
+            <a href="#" onclick="picker.setOption('chunkPadding', picker.getOption('chunkPadding') + 1, true); return false;">Inc padding</a>
+            <a href="#" onclick="picker.setOption('chunkPadding', picker.getOption('chunkPadding') - 1, true); return false;">Dec padding</a><br>
+            <a href="#" onclick="picker.setS(0.1, true); return false;">Inc sat</a>
+            <a href="#" onclick="picker.setS(-0.1, true); return false;">Dec sat</a>
+        </div>
+        
+        <input class="search-color" id="search-color" name="color[]" value="" autocomplete="off" >
+        
+        <script>
+            var picker = new KellyHlPicker({
+				place : 'picker', 
+				input : 'search-color', 
+			});
+        </script>
+    </body>
+</html>

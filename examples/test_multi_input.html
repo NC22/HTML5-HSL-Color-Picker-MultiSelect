@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>KellyHlPicker example</title>
+        <meta charset="UTF-8">
+        <script src="../html5kellyhlpicker.js"></script>
+        <style>
+			body {background : #d4d4d4; font-family: Calibri; padding-top: 12px; text-align : center;} input{border: 0px;}
+			
+			.saturation div {
+				display : inline-block;
+				line-height : 36px;
+			}
+			
+			#saturation {
+				font-size : 16px;
+			}
+			
+			.saturation-controll {
+				display : inline-block;
+				margin-left : 12px;
+			}
+			
+			.saturation-controll a {
+				display: inline-block;
+				text-decoration : none; 
+				color : #555; 
+				padding-bottom : 0px; 
+				font-weight : bold; 
+				font-size : 24px; 
+				width : 32px;
+				height : 32px;
+			}
+			
+			.search-color {
+				width : 120px;
+				height : 120px;
+				text-decoration : none;
+				color : transparent;
+				background-color : transparent;
+				cursor : default;
+				border-radius : 6px;
+				font-size : 16px;
+				font-weight : bold;
+				text-align : center;
+			}
+			
+			.search-color:focus, .search-color:focus{
+				outline: none;
+			}
+		</style>
+    </head>
+    <body>		
+        <!-- extra Saturation change buttons, may be some solutions for change saturation will be included in canvas in future, it's not in priority --> 
+		<div class="saturation">
+			<div>Насыщенность (Saturation)</div>
+			
+			<div class="saturation-controll">
+				<a href="#" onclick="picker.setS(0.1, true); document.getElementById('saturation').innerHTML = picker.getS(true) + '%'; return false;">+</a>
+				<a href="#" onclick="picker.setS(-0.1, true); document.getElementById('saturation').innerHTML = picker.getS(true) + '%'; return false;">-</a>
+			</div>
+			
+			<div id="saturation">100%</div>
+		</div>
+		
+		<canvas id="picker"></canvas>
+		
+		<br>
+		
+        <input class="search-color" id="search-color" name="color[]" value="" autocomplete="off" readonly>
+        <input class="search-color" id="search-color1" name="color[]" value="" autocomplete="off" readonly>
+        <input class="search-color" id="search-color2" name="color[]" value="" autocomplete="off" readonly>
+		
+		<br>
+
+        <script>
+            var picker = new KellyHlPicker({
+				place : 'picker', 
+				input : ['search-color', 'search-color1', 'search-color2'], 
+				size : 250,	
+                style : 'quad',
+                chunks : 12,
+                chunkPadding : 2,
+				userEvents : {
+					updateinput : function(handler, input, manualEnter) {
+						if (handler.getSelected(input) === false) {
+						
+							input.value = '';
+							//input.className = 'search-color';
+							input.style.backgroundColor = 'transparent';
+							return false;
+						} else {
+							input.value = handler.getSelectedHex(input);
+						}
+						
+						return true;
+					},
+				}
+			});
+        </script>
+    </body>
+</html>
