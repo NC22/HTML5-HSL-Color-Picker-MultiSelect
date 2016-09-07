@@ -57,24 +57,6 @@ function KellyHlPicker(cfg) {
     function constructor(cfg) {
         var criticalError = '', placeName = '';
 
-        if (cfg.input && typeof cfg.input === 'string') {
-
-            input = [];
-            addInput(cfg.input);
-
-        } else if (cfg.input) {
-
-            input = [];
-            for (var i = 0; i < cfg.input.length; i++) {
-                addInput(cfg.input[i]);
-            }
-
-        } else { // work without input, max selection by selectedMax
-            for (var i = 0; i < selectedMax; i++) {
-                selected[i] = false;
-            }
-        }
-
         if (cfg.place && typeof cfg.place !== 'object') {
             placeName = cfg.place;
             cfg.place = document.getElementById(cfg.place);
@@ -116,6 +98,24 @@ function KellyHlPicker(cfg) {
             grid = true;
         else
             grid = false;
+
+        if (cfg.input && typeof cfg.input === 'string') {
+
+            input = [];
+            addInput(cfg.input);
+
+        } else if (cfg.input) {
+
+            input = [];
+            for (var i = 0; i < cfg.input.length; i++) {
+                addInput(cfg.input[i]);
+            }
+
+        } else { // work without input, max selection by selectedMax
+            for (var i = 0; i < selectedMax; i++) {
+                selected[i] = false;
+            }
+        }
 
         if (cfg.userEvents)
             userEvents = cfg.userEvents;
@@ -400,7 +400,7 @@ function KellyHlPicker(cfg) {
             ctx.beginPath();
             var cX = Math.floor((cursor.x - canvasPadding) / step) * step;
             var cY = Math.floor((cursor.y - canvasPadding) / step) * step;
-
+            
             if (cX < 0)
                 cX = 0;
             if (cY < 0)
@@ -499,7 +499,16 @@ function KellyHlPicker(cfg) {
 
         newDot.x = Math.floor(newDot.x / step) * step;
         newDot.y = Math.floor(newDot.y / step) * step;
-
+            
+        if (newDot.x < 0)
+            newDot.x = 0;
+        if (newDot.y < 0)
+            newDot.y = 0;
+        if (newDot.x / step >= chunks)
+            newDot.x = (chunks - 1) * step;
+        if (newDot.y / step >= chunks)
+            newDot.y = (chunks - 1) * step;
+            
         //newDot.x -= canvasPadding;
         //newDot.y -= canvasPadding;
 

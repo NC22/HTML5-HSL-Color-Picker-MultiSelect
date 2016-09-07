@@ -11,11 +11,13 @@
     <body>		
 
         <canvas id="picker"></canvas><br>		
-        <input class="search-color" id="search-color" name="color[]" value="#ff00ff" autocomplete="off" >        
+        <input class="search-color" id="search-color" name="color[]" value="#ff2bff" autocomplete="off" >        
         <script>
             var picker = new KellyHlPicker({
                 place: 'picker',
                 input: 'search-color',
+                size : 350,	
+                chunks : 12,
             });
         </script>
     </body>
