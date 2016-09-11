@@ -22,7 +22,7 @@ function KellyHlPicker(cfg) {
     var PI = Math.PI;
 
     var handler = this;
-    var debug = true; // show some debug information
+    var debug = false; // show some debug information
 
     var canvas = false;
     var canvasPadding = 4;
