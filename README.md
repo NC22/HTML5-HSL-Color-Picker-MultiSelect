@@ -24,3 +24,6 @@ Example :
 See : \examples dir for more usage examples
 
 Source code partly based on my previouse project : https://github.com/NC22/HTML5-Color-Picker
+
+Demo :
+[Example 1](http://catface.ru/hslpicker/examples/test_input.html), [Example 2](http://catface.ru/hslpicker/examples/test_input_change_options.html), [Example 3](http://catface.ru/hslpicker/examples/test_multi_input.html)
