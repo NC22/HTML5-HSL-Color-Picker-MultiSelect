@@ -4,7 +4,7 @@
  * @author    Rubchuk Vladimir <torrenttvi@gmail.com>
  * @copyright 2016 Rubchuk Vladimir
  * @license   GPLv3
- * @version   0.7
+ * @version   0.71
  *
  * Usage example :
  *
@@ -22,7 +22,7 @@ function KellyHlPicker(cfg) {
     var PI = Math.PI;
 
     var handler = this;
-    var debug = false; // show some debug information
+    var debug = true; // show some debug information
 
     var canvas = false;
     var canvasPadding = 4;
@@ -204,7 +204,7 @@ function KellyHlPicker(cfg) {
     // local grid coordinates without out paddings    
     function dotToHl(dot) {
         return {
-            h: Math.abs(size - dot.x) / size,
+            h: 1 - Math.abs(size - dot.x) / size,
             l: Math.abs(size - dot.y) / size
         };
     }
@@ -219,9 +219,9 @@ function KellyHlPicker(cfg) {
             hl.h = 0;
         if (hl.l < 0)
             hl.l = 0;
-
+                
         var dot = {
-            x: size - (hl.h * size),
+            x: size - (size - (hl.h * size)),
             y: size - (hl.l * size),
         };
 
@@ -239,7 +239,12 @@ function KellyHlPicker(cfg) {
             dot.x = (chunks - 1) * step;
         if (dot.y / step >= chunks)
             dot.y = (chunks - 1) * step;
-        // console.log(dot);
+        
+        if (debug) {
+            console.log('hl to dot :: ');
+            console.log(hl);
+            console.log(dot);
+        }
         return dot;
     }
 

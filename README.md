@@ -1,4 +1,4 @@
-# HTML5-HSL-Color-Multi-Select v0.7
+# HTML5-HSL-Color-Multi-Select v0.71
 
 A scaleable multi select colors from HL color palete. Attaches to one or multiple "input" DOM elements 
 
